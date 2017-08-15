@@ -1,0 +1,54 @@
+spring:
+  profiles: default
+  profiles.active: default
+  application:
+      name: XHipster
+  thymeleaf:
+    mode: HTML5
+    encoding: utf-8
+    content-type: text/html
+    cache: false
+  mvc:
+    locale: en_US
+    date-format: dd/MM/yyyy HH:mm:ss
+  http:
+    multipart:
+      enabled: true
+      max-file-size: 3Mb
+      max-request-size: 10Mb
+
+
+server:
+  port: 1337
+  tomcat:
+    max-threads: 5
+    uri-encoding: utf-8
+
+security:
+  basic:
+    enabled: false
+
+
+logging:
+  level:
+    org.springframework.web: INFO
+    springframework.security: DEBUG
+    org.springframework.boot: INFO
+
+
+daemon:
+  appname: "XHipster"
+
+endpoints:
+  sensitive: false
+  info:
+    sensitive: false
+  shutdown:
+    enabled: false
+
+management:
+  security:
+    enabled: true
+  context-path: /admin/manage
+
+

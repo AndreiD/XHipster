@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" class="no-js">
+
+<head>
+    <thymeleaf th:replace="/admin/base_templates/head :: head"/>
+
+
+    <style>
+
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <div id="main" class="container clear-top">
+        <thymeleaf th:replace="/admin/base_templates/navbar :: navbar"/>
+
+
+        <div class="well" style="margin-top: 20px">
+
+            <button  data-loading-text="........ ☠ ........" id="s_onesuite" class="btn btn-success btn-lg">&nbsp;&nbsp; Run One Suite &nbsp;&nbsp;</button>
+            &nbsp;&nbsp;
+
+            <button  data-loading-text="........ ☠ ........." id="s_allsuites" class="btn btn-primary btn-lg">&nbsp;&nbsp; Run All Suites &nbsp;&nbsp;</button>
+            &nbsp;&nbsp;
+
+            <a href="http://automation.lab.priv:8080" target="_blank" class="btn btn-danger btn-lg">&nbsp;&nbsp; Test Results &nbsp;&nbsp;</a>
+            &nbsp;&nbsp;
+
+        </div>
+
+
+        <div id="console_output">
+        </div>
+    </div>
+</div>
+
+<thymeleaf th:replace="/admin/base_templates/footer :: footer"/>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"
+        integrity="sha256-KWJavOowudybFMUCd547Wvd/u8vUg/2g0uSWYU5Ae+w="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"
+        integrity="sha256-nkP8cj5xaTdWK/BsZl+57ZCE/Y/i4UNtbNTpgH+6Taw="
+        crossorigin="anonymous"></script>
+
+
+<script language="JavaScript" type="text/javascript" src="/js/main.js"/>
+<script language="JavaScript" type="text/javascript" src="/js/xsocket.js"/>
+
+<script type="text/javascript">
+    $(window).bind("load", function () {
+        connect();
+    });
+
+    $('#s_onesuite').click(function () {
+
+        //disable buttons
+        var $btnOne = $('#s_onesuite').button('loading');
+        var $btnAll = $('#s_allsuites').button('loading');
+
+        sendSocketMessage("s_onesuite");
+        $("#s_onesuite").attr("disabled", true);
+        setTimeout(function () {
+            $btnOne.attr('disabled', false).button('reset');
+            $btnAll.attr('disabled', false).button('reset');
+        }, 60000);
+    });
+
+    $('#s_allsuites').click(function () {
+
+        //disable buttons
+        var $btnOne = $('#s_onesuite').button('loading');
+        var $btnAll = $('#s_allsuites').button('loading');
+
+        sendSocketMessage("s_allsuites");
+        $("#s_allsuites").attr("disabled", true);
+        setTimeout(function () {
+            $btnOne.attr('disabled', false).button('reset');
+            $btnAll.attr('disabled', false).button('reset');
+        }, 150000);
+    });
+
+</script>
+
+</body>
+</html>

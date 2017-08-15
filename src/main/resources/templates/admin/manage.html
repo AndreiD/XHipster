@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" class="no-js">
+
+<head>
+    <thymeleaf th:replace="/admin/base_templates/head :: head"/>
+</head>
+
+
+<body>
+<div id="wrap">
+    <div id="main" class="container clear-top">
+        <thymeleaf th:replace="/admin/base_templates/navbar :: navbar"/>
+        <div class="jumbotron">
+
+            <h3>Memory:</h3>
+            <div class="progress">
+                <div id="memory_progress" class="progress-bar progress-bar-striped active"
+                     role="progressbar"
+                     aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                     style="width: 15%">
+                </div>
+            </div>
+
+            <span style="font-size: 1.2em" id="uptime">Uptime here</span>
+
+
+            <br/>
+            <br/>
+            <div id="metrics">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<thymeleaf th:replace="/admin/base_templates/footer :: footer"/>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<script language="JavaScript" type="text/javascript" src="/js/main.js"/>
+
+<script>
+    (function () {
+
+        var getDuration = function (millis) {
+            var dur = {};
+            var units = [
+                {label: "millis", mod: 1000},
+                {label: "seconds", mod: 60},
+                {label: "minutes", mod: 60},
+                {label: "hours", mod: 24},
+                {label: "days", mod: 31}
+            ];
+            // calculate the individual unit values...
+            units.forEach(function (u) {
+                millis = (millis - (dur[u.label] = (millis % u.mod))) / u.mod;
+            });
+            // convert object to a string representation...
+            var nonZero = function (u) {
+                return dur[u.label];
+            };
+            dur.toString = function () {
+                return units
+                    .reverse()
+                    .filter(nonZero)
+                    .map(function (u) {
+                        return dur[u.label] + " " + (dur[u.label] == 1 ? u.label.slice(0, -1)
+                                : u.label);
+                    })
+                    .join(', ');
+            };
+            return dur;
+        };
+
+        var metricsEndpoint = "/admin/manage/metrics";
+        $.getJSON(metricsEndpoint)
+            .done(function (data) {
+
+                var items = [];
+
+                Object.keys(data).forEach(function (key) {
+                    console.log(key, data[key]);
+                    items.push("<li>" + key + " - " + data[key] + "</li>");
+                });
+
+                $("<ul/>", {
+                    "class": "my-new-list",
+                    html: items.join("")
+                }).appendTo("#metrics");
+
+                //memory
+                var memory_free_percent = (data["mem.free"] * 100) / data["mem"];
+                $("#memory_progress").attr("style", "width: " + memory_free_percent + "%");
+
+                $("#uptime").html("Uptime: " + getDuration(data["instance.uptime"]).toString());
+
+            });
+    })();
+</script>
+
+</body>
+</html>
+
+
+
+
+
+

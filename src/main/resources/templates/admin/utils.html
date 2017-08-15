@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" class="no-js">
+
+<head>
+    <thymeleaf th:replace="/admin/base_templates/head :: head"/>
+
+
+    <style>
+
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <div id="main" class="container clear-top">
+        <thymeleaf th:replace="/admin/base_templates/navbar :: navbar"/>
+
+
+        <div class="well" style="margin-top: 20px">
+            <a id="s_connected_devices" class="btn btn-success btn-lg">Connected Devices</a>
+            &nbsp;&nbsp;
+            <a id="s_restart_adb" class="btn btn-warning btn-lg">Restart ADB</a>
+            &nbsp;&nbsp;
+            <a id="s_restart_appium" class="btn btn-warning btn-lg">Restart Appium</a>
+            &nbsp;&nbsp;
+            <a id="s_git_pull" class="btn btn-warning btn-lg">Git Pull</a>
+            &nbsp;&nbsp;
+        </div>
+
+
+        <div id="console_output">
+        </div>
+
+
+    </div>
+</div>
+
+<thymeleaf th:replace="/admin/base_templates/footer :: footer"/>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"
+        integrity="sha256-KWJavOowudybFMUCd547Wvd/u8vUg/2g0uSWYU5Ae+w="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"
+        integrity="sha256-nkP8cj5xaTdWK/BsZl+57ZCE/Y/i4UNtbNTpgH+6Taw="
+        crossorigin="anonymous"></script>
+
+
+<script language="JavaScript" type="text/javascript" src="/js/main.js"/>
+<script language="JavaScript" type="text/javascript" src="/js/xsocket.js"/>
+
+<script type="text/javascript">
+    $(window).bind("load", function () {
+        connect();
+    });
+
+    $('#s_connected_devices').click(function () {
+        sendSocketMessage("s_connected_devices");
+        $("#s_connected_devices").attr("disabled", true);
+        setTimeout(function () {
+            $("#s_connected_devices").attr('disabled', false);
+        }, 3000);
+    });
+    $('#s_restart_appium').click(function () {
+        sendSocketMessage("s_restart_appium");
+        $("#s_restart_appium").attr("disabled", true);
+        setTimeout(function () {
+            $("#s_restart_appium").attr('disabled', false);
+        }, 3000);
+    });
+    $('#s_restart_adb').click(function () {
+        sendSocketMessage("s_restart_adb");
+        $("#s_restart_adb").attr("disabled", true);
+        setTimeout(function () {
+            $("#s_restart_adb").attr('disabled', false);
+        }, 5000);
+    });
+    $('#s_git_pull').click(function () {
+        sendSocketMessage("s_git_pull");
+        $("#s_git_pull").attr("disabled", true);
+        setTimeout(function () {
+            $("#s_git_pull").attr('disabled', false);
+        }, 10000);
+    });
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
