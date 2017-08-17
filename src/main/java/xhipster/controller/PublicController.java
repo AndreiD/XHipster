@@ -26,4 +26,11 @@ public class PublicController {
     }
 
 
+    @RequestMapping(value = "/list_programming_languages", method = RequestMethod.GET)
+    protected String publicListProgrammingLanguages(final HttpServletRequest req, final Map<String, Object> model) {
+        return "/public/list_programming_languages";
+    }
+
+
+
 }

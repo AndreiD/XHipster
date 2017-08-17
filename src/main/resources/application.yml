@@ -29,6 +29,23 @@ security:
     enabled: false
 
 
+# Databases
+jdbc:
+  driverClassName: com.mysql.jdbc.Driver
+  url: "jdbc:mysql://localhost:3306/xhipster?jdbcCompliantTruncation=false&elideSetAutoCommits=true&useLocalSessionState=true&cachePrepStmts=true&cacheCallableStmts=true&alwaysSendSetIsolation=false&prepStmtCacheSize=4096&cacheServerConfiguration=true&prepStmtCacheSqlLimit=2048&zeroDateTimeBehavior=convertToNull&traceProtocol=false&useUnbufferedInput=false&useReadAheadInput=false&maintainTimeStats=false&useServerPrepStmts&cacheRSMetadata=true&verifyServerCertificate=false&useSSL=false&requireSSL=false"
+  username: root
+  password: password
+
+hibernate:
+  dialect: org.hibernate.dialect.MySQLDialect
+  show_sql: true
+  format_sql: true
+  ddl-auto: update
+  id.new_generator_mappings: false
+
+
+
+
 logging:
   level:
     org.springframework.web: INFO

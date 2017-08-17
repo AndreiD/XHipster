@@ -4,21 +4,6 @@ body {
     padding-bottom: 20px;
 }
 
-#console_output {
-    font-family: 'Inconsolata', monospace;
-    font-size: 14px;
-    color: #F4FFFF;
-    display: block;
-    font-family: monospace;
-    white-space: -moz-pre-wrap;
-    white-space: -o-pre-wrap;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    width: 95vw;
-    margin-left: calc(-45vw + 46%);
-}
-
-
 
 .jumbotron {
     margin-top: 20px;
