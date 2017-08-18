@@ -12,3 +12,9 @@ Here's a MUCH simpler template for you to use.
 
 XHipster is a simple Spring Boot template that does pretty much what JHipster is doing, but in much less lines of code and with the idea of adding
 as little as possible in order to give you (the developer) choices in your own tools.
+
+
+## How to
+
+Make sure you setup MySQL first (or any other) and configure with with a database named xhipster
+See application.yml for more
