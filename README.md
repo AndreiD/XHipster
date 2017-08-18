@@ -16,5 +16,12 @@ as little as possible in order to give you (the developer) choices in your own t
 
 ## How to
 
-Make sure you setup MySQL first (or any other) and configure with with a database named xhipster
-See application.yml for more
+Do you want to start "working" on your stuff or you want to play a little with it ?
+
+If you want to get THIS example running with programming languages like in the picture make sure you setup MySQL first and configure with with a database named xhipster
+See *application.yml* for the config settings (pay attention to the MySQL port).
+
+Using docker ?
+~~~~
+docker run --detach --name=test-mysql --env="MYSQL_ROOT_PASSWORD=password" --publish 6603:3306 mysql
+~~~~
