@@ -41,6 +41,8 @@ dependencies {
     //Lombok
     compileOnly('org.projectlombok:lombok')
 
+    //Security
+    compile("org.springframework.boot:spring-boot-starter-security")
 
     //Database
     compile("mysql:mysql-connector-java:5.1.42")

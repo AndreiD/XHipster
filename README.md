@@ -10,9 +10,7 @@ Here's a MUCH simpler template for you to use.
 
 # XHipster to the rescue
 
-XHipster is a simple Spring Boot template that does pretty much what JHipster is doing, but in much less lines of code and with the idea of adding
-as little as possible in order to give you (the developer) choices in your own tools.
-
+XHipster is a simple Spring Boot template that does very little with much less lines of code giving you (the developer) choices for your own things.
 
 ## How to
 
@@ -23,5 +21,6 @@ See *application.yml* for the config settings (pay attention to the MySQL port).
 
 Using docker ?
 ~~~~
+docker rm -f test-mysql
 docker run --detach --name=test-mysql --env="MYSQL_ROOT_PASSWORD=password" --publish 6603:3306 mysql
 ~~~~

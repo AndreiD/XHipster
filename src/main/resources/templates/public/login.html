@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" class="no-js">
+
+<head>
+    <thymeleaf th:replace="/public/base_templates/head :: head"/>
+</head>
+
+
+<body>
+<div id="wrap">
+    <div id="main" class="container clear-top">
+        <thymeleaf th:replace="/public/base_templates/navbar :: navbar"/>
+
+
+        <div class="jumbotron">
+            <div class="row" style="text-align: left">
+                <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+                    <form th:action="@{/login}" method="post" >
+                        <fieldset>
+                            <h3>Please Sign In</h3>
+
+                            <div th:if="${param.error}">
+                                <div class="alert alert-danger">
+                                    Invalid username and password.
+                                </div>
+                            </div>
+                            <div th:if="${param.logout}">
+                                <div class="alert alert-info">
+                                    You have been logged out.
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" name="username" id="username"
+                                       class="form-control input-lg"
+                                       placeholder="UserName" required="true" autofocus="true"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="password" id="password"
+                                       class="form-control input-lg"
+                                       placeholder="Password" required="true"/>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <input type="submit" class="btn btn-lg btn-primary btn-block"
+                                           value="Sign In"/>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+    <thymeleaf th:replace="/public/base_templates/footer :: footer"/>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <script language="JavaScript" type="text/javascript" src="/js/main.js"/>
+
+</body>
+</html>
+
+
+
+
+
+

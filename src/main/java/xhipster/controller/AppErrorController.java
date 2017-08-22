@@ -34,4 +34,6 @@ public class AppErrorController implements org.springframework.boot.autoconfigur
   public String getErrorPath() {
     return PATH;
   }
+
+
 }
