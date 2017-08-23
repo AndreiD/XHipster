@@ -26,6 +26,10 @@
                                                            aria-hidden="true"></span> Add Programming Language</a>
                     </li>
 
+                    <li th:classappend="${#httpServletRequest.getRequestURI() == '/admin/list_programming_languages' ? 'active':''}"><a href="/admin/list_programming_languages"><span class="glyphicon glyphicon-fire"
+                                                                                                                                                                                   aria-hidden="true"></span> List Programming Languages</a>
+                    </li>
+
                     <li th:classappend="${#httpServletRequest.getRequestURI() == '/logout' ? 'active':''}"><a href="/logout"><span class="glyphicon glyphicon-off"
                                                                                                                                                              aria-hidden="true"></span> Logout</a></li>
 
