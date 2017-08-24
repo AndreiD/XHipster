@@ -21,6 +21,11 @@ See *application.yml* for the config settings (pay attention to the MySQL port).
 
 Using docker ?
 ~~~~
-docker rm -f test-mysql
+beginning:
 docker run --detach --name=test-mysql --env="MYSQL_ROOT_PASSWORD=password" --publish 6603:3306 mysql
+
+after:
+docker ps -a
+docker start -ai [CONTAINER_ID]
+
 ~~~~

@@ -21,7 +21,7 @@ public class APIController {
     ProgrammingLanguagesRepository mRepository;
 
 
-    @RequestMapping(value = "/api/v1/add_programming_language", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/api/v1/programming_language", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> addProgrammingLanguage(@RequestBody ProgrammingLanguage programmingLanguage) {
 
         if (programmingLanguage.getName().length() < 1 || programmingLanguage.getDescription().length() < 1) {
@@ -44,6 +44,16 @@ public class APIController {
         String json = "{\"message\": \"" + message + "\"}";
 
         return new ResponseEntity<>(json, HttpStatus.CREATED);
+    }
+
+
+    @RequestMapping(value = "/api/v1/programming_language", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> deleteProgrammingLanguage(@RequestBody ProgrammingLanguage programmingLanguage) {
+
+        String message = "deleted";
+        String json = "{\"message\": \"" + message + "\"}";
+
+        return new ResponseEntity<>(json, HttpStatus.OK);
     }
 
 
