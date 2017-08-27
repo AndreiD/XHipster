@@ -10,32 +10,30 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private AccessDeniedHandler accessDeniedHandler;
+  @Autowired
+  private AccessDeniedHandler accessDeniedHandler;
 
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http.csrf().disable()
+        .authorizeRequests()
+        .antMatchers("/admin*").hasRole("ADMIN")
+        .anyRequest().permitAll()
+        .and()
+        .formLogin()
+        .loginPage("/login")
+        .permitAll()
+        .and()
+        .logout()
+        .permitAll()
+        .and()
+        .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
+  }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/admin*").hasRole("ADMIN")
-                .anyRequest().permitAll()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .and()
-                .logout()
-                .permitAll()
-                .and()
-                .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
-    }
-
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth)
-            throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("admin").password("password").roles("USER", "ADMIN");
-    }
-
+  @Autowired
+  public void configureGlobal(AuthenticationManagerBuilder auth)
+      throws Exception {
+    auth.inMemoryAuthentication()
+        .withUser("admin").password("password").roles("USER", "ADMIN");
+  }
 }

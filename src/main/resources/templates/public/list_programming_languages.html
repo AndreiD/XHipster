@@ -2,83 +2,83 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en" class="no-js">
 
 <head>
-    <thymeleaf th:replace="/public/base_templates/head :: head"/>
+  <thymeleaf th:replace="/public/base_templates/head :: head"/>
 </head>
 
 
 <body>
 <div id="wrap">
-    <div id="main" class="container clear-top">
-        <thymeleaf th:replace="/public/base_templates/navbar :: navbar"/>
+  <div id="main" class="container clear-top">
+    <thymeleaf th:replace="/public/base_templates/navbar :: navbar"/>
 
 
-        <div style="margin-top: 50px" th:if="${not #lists.isEmpty(programmingLanguagePage)}">
-            <h4>Programming Languages</h4>
-            <br/>
-            <div class="table-responsive">
-                <table class="table table-striped table-hover">
-                    <thead class="thead-inverse">
-                    <tr>
+    <div style="margin-top: 50px" th:if="${not #lists.isEmpty(programmingLanguagePage)}">
+      <h4>Programming Languages</h4>
+      <br/>
+      <div class="table-responsive">
+        <table class="table table-striped table-hover">
+          <thead class="thead-inverse">
+          <tr>
 
-                        <th>Name</th>
-                        <th>Description</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="programmingLanguage : ${programmingLanguagePage}">
-                        <td><span
-                                th:text="${#strings.abbreviate(programmingLanguage.name,35)}">Name</span>
-                        </td>
-                        <td th:text="${#strings.abbreviate(programmingLanguage.description,250)}">
-                            body
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
-
-
-        <!-- Pagination Bar -->
-        <div style="margin-bottom: 50px" th:fragment='paginationbar'>
-            <div>
-                <ul class='pagination pagination-centered'>
-                    <li th:class="${page.firstPage}?'disabled':''">
-                        <span th:if='${page.firstPage}'>← First</span>
-                        <a th:if='${not page.firstPage}'
-                           th:href='@{${page.url}(page=0,size=${page.size})}'>←
-                            First</a>
-                    </li>
-                    <li th:class="${page.hasPreviousPage}? '' : 'disabled'">
-                        <span th:if='${not page.hasPreviousPage}'>«</span>
-                        <a th:if='${page.hasPreviousPage}'
-                           th:href='@{${page.url}(page=${page.number-2},size=${page.size})}'
-                           title='Go to previous page'>«</a>
-                    </li>
-                    <li th:each='item : ${page.items}' th:class="${item.current}? 'active' : ''">
-                        <span th:if='${item.current}' th:text='${item.number}'>1</span>
-                        <a th:if='${not item.current}'
-                           th:href='@{${page.url}(page=${item.number-1},size=${page.size})}'><span
-                                th:text='${item.number}'>1</span></a>
-                    </li>
-                    <li th:class="${page.hasNextPage}? '' : 'disabled'">
-                        <span th:if='${not page.hasNextPage}'>»</span>
-                        <a th:if='${page.hasNextPage}'
-                           th:href='@{${page.url}(page=${page.number},size=${page.size})}'
-                           title='Go to next page'>»</a>
-                    </li>
-                    <li th:class="${page.lastPage}? 'disabled' : ''">
-                        <span th:if='${page.lastPage}'>Last →</span>
-                        <a th:if='${not page.lastPage}'
-                           th:href='@{${page.url}(page=${page.totalPages - 1},size=${page.size})}'>Last
-                            →</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+            <th>Name</th>
+            <th>Description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="programmingLanguage : ${programmingLanguagePage}">
+            <td><span
+                th:text="${#strings.abbreviate(programmingLanguage.name,35)}">Name</span>
+            </td>
+            <td th:text="${#strings.abbreviate(programmingLanguage.description,250)}">
+              body
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
 
     </div>
+
+
+    <!-- Pagination Bar -->
+    <div style="margin-bottom: 50px" th:fragment='paginationbar'>
+      <div>
+        <ul class='pagination pagination-centered'>
+          <li th:class="${page.firstPage}?'disabled':''">
+            <span th:if='${page.firstPage}'>← First</span>
+            <a th:if='${not page.firstPage}'
+               th:href='@{${page.url}(page=0,size=${page.size})}'>←
+              First</a>
+          </li>
+          <li th:class="${page.hasPreviousPage}? '' : 'disabled'">
+            <span th:if='${not page.hasPreviousPage}'>«</span>
+            <a th:if='${page.hasPreviousPage}'
+               th:href='@{${page.url}(page=${page.number-2},size=${page.size})}'
+               title='Go to previous page'>«</a>
+          </li>
+          <li th:each='item : ${page.items}' th:class="${item.current}? 'active' : ''">
+            <span th:if='${item.current}' th:text='${item.number}'>1</span>
+            <a th:if='${not item.current}'
+               th:href='@{${page.url}(page=${item.number-1},size=${page.size})}'><span
+                th:text='${item.number}'>1</span></a>
+          </li>
+          <li th:class="${page.hasNextPage}? '' : 'disabled'">
+            <span th:if='${not page.hasNextPage}'>»</span>
+            <a th:if='${page.hasNextPage}'
+               th:href='@{${page.url}(page=${page.number},size=${page.size})}'
+               title='Go to next page'>»</a>
+          </li>
+          <li th:class="${page.lastPage}? 'disabled' : ''">
+            <span th:if='${page.lastPage}'>Last →</span>
+            <a th:if='${not page.lastPage}'
+               th:href='@{${page.url}(page=${page.totalPages - 1},size=${page.size})}'>Last
+              →</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 <thymeleaf th:replace="/public/base_templates/footer :: footer"/>
