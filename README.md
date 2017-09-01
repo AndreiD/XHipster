@@ -14,8 +14,6 @@ XHipster is a simple Spring Boot template that does very little with much less l
 
 ## How to
 
-Do you want to start "working" on your stuff or you want to play a little with it ?
-
 If you want to get THIS example running with programming languages like in the picture make sure you setup MySQL first and configure with with a database named xhipster
 See *application.yml* for the config settings (pay attention to the MySQL port).
 
