@@ -41,6 +41,14 @@ public class AdminController {
     return "/admin/add_programming_language";
   }
 
+  @RequestMapping(value = "/admin/edit_programmingLanguage", method = RequestMethod.GET)
+  public String editProgrammingLanguage(ProgrammingLanguagesForm programmingLanguagesForm) {
+
+    return "/admin/add_programming_language";
+  }
+
+
+
   @RequestMapping(value = "/admin/list_programming_languages", method = RequestMethod.GET)
   protected String adminListProgrammingLanguages(Model model, Pageable pageable) {
 

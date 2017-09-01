@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" class="no-js">
+
+<head>
+  <thymeleaf th:replace="/admin/base_templates/head :: head"/>
+
+
+  <style>
+
+  </style>
+</head>
+<body>
+<div id="wrap">
+  <div id="main" class="container clear-top">
+    <thymeleaf th:replace="/admin/base_templates/navbar :: navbar"/>
+
+
+    <div class="jumbotron">
+
+      <h3>Edit Programming Language</h3>
+      <br/>
+      <div style="max-width: 55%" id="ajax_response"></div>
+
+      <h1>To be completed in another day...</h1>
+
+      <div style="max-width: 55%">
+        <form role="form" th:object="${programmingLanguagesForm}" method="post"
+              id="programmingLanguagesForm">
+
+
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input class="form-control" type="text" id="name" th:field="*{name}"/>
+            <span class="help-block mdl-textfield__error"
+                  style="display: none;">Name ?</span>
+          </div>
+          <br/>
+
+          <div class="form-group">
+
+            <label for="message">Description</label>
+            <textarea class="form-control" type="text" rows="10" id="message"
+                      th:field="*{description}"></textarea>
+            <span class="help-block mdl-textfield__error" style="display: none;">Description ?</span>
+          </div>
+
+
+          <button type="submit" id="feedbackSubmit"
+                  class="btn btn-primary btn-lg"
+                  style="display: block; margin-top: 10px; min-width: 150px">SAVE
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+
+  </div>
+</div>
+
+<thymeleaf th:replace="/admin/base_templates/footer :: footer"/>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+<script language="JavaScript" type="text/javascript" src="/js/main.js"/>
+
+<script type="text/javascript">
+
+
+  $('#programmingLanguagesForm').submit(function (event) {
+    event.preventDefault();
+
+    var formData = $(this).serializeObject();
+
+    $.ajax({
+      cache: false,
+      url: "/api/v1/programming_language",
+      type: "POST",
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      data: JSON.stringify(formData),
+      success: function (data) {
+        console.log(data);
+        $("#ajax_response").html('<div class="alert alert-success">' + data.message + '</div>');
+      },
+      error: function (e) {
+        $("#ajax_response").html('<div class="alert alert-warning">' + JSON.parse(e.responseText)['message'] + '</div>');
+      },
+      done: function (e) {
+      }
+    });
+  });
+
+
+</script>
+
+</body>
+</html>
